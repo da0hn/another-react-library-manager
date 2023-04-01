@@ -1,11 +1,9 @@
-import Login from "./pages/Login";
 import './global.css'
+import AppRouter from "./AppRouter";
 
 export default function App() {
 
     return (
-        <div>
-            <Login/>
-        </div>
+        <AppRouter/>
     );
 }
