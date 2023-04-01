@@ -1,8 +1,11 @@
-import React from 'react';
-import Header from './Header';
+import Login from "./pages/Login";
+import './global.css'
 
 export default function App() {
+
     return (
-        <Header title='Book Manager'/>
+        <div>
+            <Login/>
+        </div>
     );
 }
