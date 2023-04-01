@@ -2,7 +2,6 @@ import logoImage from '../../assets/logo.svg'
 import './styles.css'
 import {Link} from "react-router-dom";
 import {FiEdit, FiPower, FiTrash2} from "react-icons/fi";
-import {BsFillTrash2Fill} from "react-icons/all";
 
 export default function Book() {
     return (
