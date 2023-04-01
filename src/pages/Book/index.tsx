@@ -1,7 +1,8 @@
 import logoImage from '../../assets/logo.svg'
 import './styles.css'
 import {Link} from "react-router-dom";
-import {FiPower} from "react-icons/fi";
+import {FiEdit, FiPower, FiTrash2} from "react-icons/fi";
+import {BsFillTrash2Fill} from "react-icons/all";
 
 export default function Book() {
     return (
@@ -14,6 +15,29 @@ export default function Book() {
                     <FiPower size={18} color='#251fc5'></FiPower>
                 </button>
             </header>
+
+            <h1>Registered Books</h1>
+
+            <ul>
+                <li>
+                    <strong>Title: </strong>
+                    <p>Docker Deep Dive</p>
+                    <strong>Author: </strong>
+                    <p>Nigel Poulton</p>
+                    <strong>Price: </strong>
+                    <p>R$ 47,90</p>
+                    <strong>Release Date: </strong>
+                    <p>12/07/2017</p>
+
+                    <button type='button'>
+                        <FiEdit size={20} color='#251fc5'></FiEdit>
+                    </button>
+                    <button type='button'>
+                        <FiTrash2 size={20} color='#251fc5'></FiTrash2>
+                    </button>
+                </li>
+            </ul>
+
         </div>
     );
 }
