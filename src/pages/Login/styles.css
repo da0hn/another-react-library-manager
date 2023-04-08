@@ -11,7 +11,7 @@ h1 {
     margin: 0 auto;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .login-container section.form {
@@ -21,7 +21,7 @@ h1 {
 }
 
 .login-container section.form img {
-    width: 65%;
+    width: 45%;
     margin-left: auto;
     margin-right: auto;
     display: block;
