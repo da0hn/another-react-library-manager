@@ -1,6 +1,6 @@
 import Login from './pages/Login'
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Book from "./pages/Book";
+import Books from "./pages/Books";
 
 export default function AppRouter() {
     return (
@@ -9,7 +9,7 @@ export default function AppRouter() {
                 <Route path='/' element={<Login/>}></Route>
             </Routes>
             <Routes>
-                <Route path='/books' element={<Book/>}></Route>
+                <Route path='/books' element={<Books/>}></Route>
             </Routes>
         </BrowserRouter>
     );

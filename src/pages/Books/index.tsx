@@ -3,7 +3,7 @@ import './styles.css'
 import {Link} from "react-router-dom";
 import {FiEdit, FiPower, FiTrash2} from "react-icons/fi";
 
-export default function Book() {
+export default function Books() {
     return (
         <div className="book-container">
             <header>
