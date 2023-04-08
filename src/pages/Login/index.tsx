@@ -8,21 +8,21 @@ import { doLogin, LoginRequest } from '../../services/AuthenticationService';
 import { storageOnLogin } from '../../services/StorageService';
 
 export default function Login() {
-  const [ login, setLogin ] = useState({ username: '', password: '' });
+  const [ loginForm, setLoginForm ] = useState({ username: '', password: '' });
 
   const navigate = useNavigate();
 
   // Partial implementation of https://www.codevertiser.com/react-forms-best-practices/
   const onChangeInput = (e: any) => {
     const { name, value } = e.target;
-    setLogin({ ...login, [name]: value });
+    setLoginForm({ ...loginForm, [name]: value });
   };
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
 
     const request: LoginRequest = {
-      ...login,
+      ...loginForm,
     };
 
     try {
@@ -36,7 +36,7 @@ export default function Login() {
 
   };
 
-  const { username, password } = login;
+  const { username, password } = loginForm;
 
   return (
     <div className="login-container">
