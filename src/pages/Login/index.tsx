@@ -22,14 +22,18 @@ export default function Login() {
     e.preventDefault();
 
     const request: LoginRequest = {
-      ...e.target.value,
+      ...login,
     };
 
-    const response = await doLogin(request);
+    try {
+      const response = await doLogin(request);
+      storageOnLogin({ username, ...response });
+      navigate('/books');
+    } catch (e) {
+      console.error(e);
+      alert('Login failed! Try Again!');
+    }
 
-    storageOnLogin({ username, ...response });
-
-    navigate('/books');
   };
 
   const { username, password } = login;
