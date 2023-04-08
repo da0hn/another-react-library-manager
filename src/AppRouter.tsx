@@ -7,13 +7,10 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login/>}></Route>
-      </Routes>
-      <Routes>
-        <Route path="/books" element={<Books/>}></Route>
-      </Routes>
-      <Routes>
-        <Route path="/book/new" element={<NewBook/>}></Route>
+        <Route path="/" element={<Login/>}/>
+        <Route path="/books" element={<Books/>}/>
+        <Route path="/book/new" element={<NewBook/>}/>
+        <Route path="*" element={<Login/>}/>
       </Routes>
     </BrowserRouter>
   );
