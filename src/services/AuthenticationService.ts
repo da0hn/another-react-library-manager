@@ -34,3 +34,10 @@ export const doLogin = async (request: LoginRequest): Promise<LoginResponse> => 
   return data;
 };
 
+
+
+export const logout = () => {
+  removeVariable(StorageVariables.ACCESS_TOKEN);
+  removeVariable(StorageVariables.REFRESH_TOKEN);
+  removeVariable(StorageVariables.USERNAME);
+}
