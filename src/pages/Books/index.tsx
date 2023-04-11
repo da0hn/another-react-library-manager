@@ -11,6 +11,7 @@ export default function Books() {
   const [ books, setBooks ] = useState<BookItem[]>([]);
 
   const accessToken = getVariable(StorageVariables.ACCESS_TOKEN);
+  const currentUsername = getVariable(StorageVariables.USERNAME);
 
   const navigate = useNavigate();
 
@@ -44,7 +45,7 @@ export default function Books() {
     <div className="book-container">
       <header>
         <img src={logoImage} alt="Library Logo"/>
-        <span>Welcome, <strong>Gabriel</strong></span>
+        <span>Welcome, <strong>{currentUsername?.toUpperCase() ?? 'UNKNOWN'}</strong></span>
         <Link className="button" to="/book/new">Add New Book</Link>
         <button type="button" onClick={() => onLogout()}>
           <FiPower size={18} color="#251fc5"></FiPower>
