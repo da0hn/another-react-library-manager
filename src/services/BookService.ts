@@ -34,7 +34,12 @@ export const createBook = async (request: CreateBookRequest) => {
 };
 
 export const fetchBook = async (): Promise<BookItem[]> => {
-  const accessToken = getVariable(StorageVariables.ACCESS_TOKEN);
-  const { data } = await apiClient.get<FetchBookResponse>('/api/book/v1', makeHeader(accessToken!));
+  const accessToken = getVariable(StorageVariables.ACCESS_TOKEN)!;
+  const { data } = await apiClient.get<FetchBookResponse>('/api/book/v1', makeHeader(accessToken));
   return data._embedded.bookVOes;
+};
+
+export const deleteBookById = async (bookId: number) => {
+  const accessToken = getVariable(StorageVariables.ACCESS_TOKEN)!;
+  await apiClient.delete(`/api/book/v1/${bookId}`, makeHeader(accessToken));
 };

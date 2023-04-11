@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FiEdit, FiPower, FiTrash2 } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 import { getVariable, StorageVariables } from '../../services/StorageService';
-import { BookItem, fetchBook } from '../../services/BookService';
+import { BookItem, deleteBookById, fetchBook } from '../../services/BookService';
 
 export default function Books() {
   const [ books, setBooks ] = useState<BookItem[]>([]);
@@ -18,6 +18,15 @@ export default function Books() {
     },
     [ accessToken ],
   );
+
+  const onBookDelete = async (bookId: number) => {
+    try {
+      await deleteBookById(bookId);
+      setBooks(books.filter(book => book.id !== bookId));
+    } catch (err) {
+      alert('Delete failed! Try again');
+    }
+  };
 
   return (
     <div className="book-container">
@@ -48,7 +57,7 @@ export default function Books() {
               <button type="button">
                 <FiEdit size={20} color="#251fc5"></FiEdit>
               </button>
-              <button type="button">
+              <button type="button" onClick={() => onBookDelete(book.id)}>
                 <FiTrash2 size={20} color="#251fc5"></FiTrash2>
               </button>
             </li>
