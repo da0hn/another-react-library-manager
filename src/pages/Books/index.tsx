@@ -1,11 +1,12 @@
 import logoImage from '../../assets/logo.svg';
 import './styles.css';
 import { Link, useNavigate } from 'react-router-dom';
-import { FiEdit, FiPower, FiTrash2 } from 'react-icons/fi';
+import { FiPower } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
 import { getVariable, StorageVariables } from '../../services/StorageService';
 import { BookItem, deleteBookById, fetchBook } from '../../services/BookService';
 import { logout } from '../../services/AuthenticationService';
+import BookItemList from '../../components/BookItem';
 
 export default function Books() {
   const [ books, setBooks ] = useState<BookItem[]>([]);
@@ -56,28 +57,9 @@ export default function Books() {
 
       <ul>
         {
-          books.map((book) => (
-            <li key={book.id}>
-              <strong>Title: </strong>
-              <p>{book.title}</p>
-              <strong>Author: </strong>
-              <p>{book.author}</p>
-              <strong>Price: </strong>
-              <p>{Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(book.price)}</p>
-              <strong>Release Date: </strong>
-              <p>{Intl.DateTimeFormat('pt-BR').format(new Date(book.launchDate))}</p>
-
-              <button type="button">
-                <FiEdit size={20} color="#251fc5"></FiEdit>
-              </button>
-              <button type="button" onClick={() => onBookDelete(book.id)}>
-                <FiTrash2 size={20} color="#251fc5"></FiTrash2>
-              </button>
-            </li>
-          ))
+          books.map((book) => (<BookItemList key={book.id} item={book} onDeleteFn={onBookDelete}/>))
         }
       </ul>
-
     </div>
   );
 }
