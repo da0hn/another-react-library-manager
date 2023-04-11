@@ -33,6 +33,14 @@ export default function Books() {
     }
   };
 
+  const onBookEdit = async (bookId: number) => {
+    try {
+      navigate(`/book/${bookId}/edit`, { state: { id: bookId } });
+    } catch (err) {
+      alert('Edit failed! Try again');
+    }
+  };
+
   const onLogout = () => {
     try {
       navigate('/');
@@ -57,7 +65,14 @@ export default function Books() {
 
       <ul>
         {
-          books.map((book) => (<BookItemList key={book.id} item={book} onDeleteFn={onBookDelete}/>))
+          books.map((book) => (
+            <BookItemList
+              key={book.id}
+              item={book}
+              onDeleteFn={onBookDelete}
+              onEditFn={onBookEdit}
+            />
+          ))
         }
       </ul>
     </div>

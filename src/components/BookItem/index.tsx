@@ -5,9 +5,10 @@ import { BookItem } from '../../services/BookService';
 type Props = {
   item: BookItem,
   onDeleteFn: (id: number) => void
+  onEditFn: (id: number) => void
 }
 
-export default function BookItemList({ item, onDeleteFn }: Props) {
+export default function BookItemList({ item, onDeleteFn, onEditFn }: Props) {
   return (
     <>
       <li>
@@ -21,7 +22,7 @@ export default function BookItemList({ item, onDeleteFn }: Props) {
         <p>{Intl.DateTimeFormat('pt-BR').format(new Date(item.launchDate))}</p>
 
         <button type="button">
-          <FiEdit size={20} color="#251fc5"></FiEdit>
+          <FiEdit size={20} color="#251fc5" onClick={() => onEditFn(item.id)}></FiEdit>
         </button>
         <button type="button" onClick={() => onDeleteFn(item.id)}>
           <FiTrash2 size={20} color="#251fc5"></FiTrash2>

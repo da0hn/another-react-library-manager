@@ -27,6 +27,28 @@ export type FetchBookResponse = {
   }
 }
 
+export type FetchBookByIdResponse = {
+  id: number,
+  author: string,
+  launchDate: Date,
+  price: number,
+  title: string,
+  _links: {
+    self: {
+      href: string
+    }
+  }
+}
+
+export type BookDetail = {
+  id: string,
+  title: string,
+  author: string,
+  launchDate: string,
+  price: string
+}
+
+export type EditBookRequest = {id: number} & CreateBookRequest;
 
 export const createBook = async (request: CreateBookRequest) => {
   const accessToken = getVariable(StorageVariables.ACCESS_TOKEN);
@@ -42,4 +64,20 @@ export const fetchBook = async (): Promise<BookItem[]> => {
 export const deleteBookById = async (bookId: number) => {
   const accessToken = getVariable(StorageVariables.ACCESS_TOKEN)!;
   await apiClient.delete(`/api/book/v1/${bookId}`, makeHeader(accessToken));
+};
+
+export const fetchBookById = async (bookId: number) => {
+  const accessToken = getVariable(StorageVariables.ACCESS_TOKEN)!;
+  const { data } = await apiClient.get<FetchBookByIdResponse>(`/api/book/v1/${bookId}`, makeHeader(accessToken));
+  return {
+    ...data,
+    id: data.id.toString(),
+    price: data.price.toString(),
+    launchDate: data.launchDate.toString().split('T')[0],
+  } as BookDetail;
+};
+
+export const editBook = async (request: EditBookRequest) => {
+  const accessToken = getVariable(StorageVariables.ACCESS_TOKEN)!;
+  await apiClient.put(`/api/book/v1`, request, makeHeader(accessToken));
 };
