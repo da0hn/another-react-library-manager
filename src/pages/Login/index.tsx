@@ -4,8 +4,7 @@ import logoImage from '../../assets/logo.svg';
 import padlock from '../../assets/padlock.png';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { doLogin, LoginRequest } from '../../services/AuthenticationService';
-import { storageOnLogin } from '../../services/StorageService';
+import { doLogin, persistUserData, LoginRequest } from '../../services/AuthenticationService';
 
 export default function Login() {
   const [ loginForm, setLoginForm ] = useState({ username: '', password: '' });
@@ -27,7 +26,7 @@ export default function Login() {
 
     try {
       const response = await doLogin(request);
-      storageOnLogin({ username, ...response });
+      persistUserData({ username, ...response });
       navigate('/books');
     } catch (e) {
       console.error(e);
