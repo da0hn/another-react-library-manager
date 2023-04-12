@@ -50,16 +50,24 @@ export type BookDetail = {
 
 export type EditBookRequest = {id: number} & CreateBookRequest;
 
+type Pageable = {
+  page?: number;
+  limit?: number;
+  direction?: 'asc' | 'desc';
+}
+
 export const createBook = async (request: CreateBookRequest) => {
   const accessToken = getVariable(StorageVariables.ACCESS_TOKEN);
   await apiClient.post('/api/book/v1', request, makeHeader(accessToken!));
 };
 
-export const fetchBook = async (): Promise<BookItem[]> => {
+
+export const fetchBooks = async ({ page = 0, limit = 4, direction = 'asc' }: Pageable = {}): Promise<BookItem[]> => {
   const accessToken = getVariable(StorageVariables.ACCESS_TOKEN)!;
-  const { data } = await apiClient.get<FetchBookResponse>('/api/book/v1', makeHeader(accessToken));
+  const { data } = await apiClient.get<FetchBookResponse>(`/api/book/v1?page=${page}&limit=${limit}&direction=${direction}`, makeHeader(accessToken));
   return data._embedded.bookVOes;
 };
+
 
 export const deleteBookById = async (bookId: number) => {
   const accessToken = getVariable(StorageVariables.ACCESS_TOKEN)!;
