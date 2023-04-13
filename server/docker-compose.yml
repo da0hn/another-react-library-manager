@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  book-db:
+    container_name: book-db
+    image: mysql:8.0.31
+    ports:
+      - '13306:3306'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: 'book-db'
+      MYSQL_USER: user
+      MYSQL_PASSWORD: root
+    volumes:
+      - ./.docker/mysql:/var/lib/mysql
+    restart: on-failure
+    networks:
+      - book-db-network
+networks:
+  book-db-network:
+    driver: bridge
+    name: book-db-network
+
