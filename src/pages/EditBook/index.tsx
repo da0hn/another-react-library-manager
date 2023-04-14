@@ -3,7 +3,7 @@ import logoImage from '../../assets/logo.svg';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { useMemo, useState } from 'react';
-import { createBook, editBook, fetchBookById } from '../../services/BookService';
+import { editBook, fetchBookById } from '../../services/BookService';
 
 
 export default function EditBook() {
